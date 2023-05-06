@@ -31,7 +31,7 @@ pipeline {
                 script {
                     scannerHome = tool 'sonar'
                 }
-                withSonarQubeEnv() {
+                withSonarQubeEnv('sonar') {
                     sh "mvn clean verify sonar:sonar -Dsonar.projectKey=spring-boot3-sample-app"
                 }
             }
