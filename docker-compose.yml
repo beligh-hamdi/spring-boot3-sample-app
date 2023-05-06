@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  nexus3:
+    image: sonatype/nexus3:3.53.0
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus3-data:/var/lib/nexus
+
+  nexus2:
+    image: sonatype/nexus:2.15.1-02
+    ports:
+      - "8082:8081"
+    volumes:
+      - nexus2-data:/var/lib/nexus
+
+  jenkins:
+    image: jenkins/jenkins:2.387.3-lts-jdk17
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+
+  sonarqube:
+    image: sonarqube:9.9.1-community
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonar-data:/var/lib/sonar
+
+volumes:
+  sonar-data:
+  jenkins-data:
+  nexus2-data:
+  nexus3-data:
