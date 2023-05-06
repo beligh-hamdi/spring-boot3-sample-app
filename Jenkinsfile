@@ -27,9 +27,13 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            
-            withSonarQubeEnv() {
-            sh "mvn clean verify sonar:sonar -Dsonar.projectKey=spring-boot3-sample-app"
+            steps {
+                script {
+                    scannerHome = tool 'sonar'
+                }
+                withSonarQubeEnv() {
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=spring-boot3-sample-app"
+                }
             }
         }
     }
